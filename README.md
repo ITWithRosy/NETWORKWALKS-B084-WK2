@@ -89,14 +89,17 @@ WHOIS is used to retrieve publicly available information about a domain name, in
 `whois [target-domain]`
 
 **Observation:**
+   Domain Name: NETWORKWALKS.COM
+   Registry Domain ID: 2452319255_DOMAIN_COM-VRSN
+   Registrar WHOIS Server: whois.godaddy.com
+   Registrar URL: http://www.godaddy.com
 
-[Insert the actual WHOIS results obtained during your exercise.]
 
 **Security relevance:**
 
 Domain registration information can help security professionals understand the ownership and infrastructure associated with a domain. It can also provide information that may be useful during reconnaissance.
 
-**Evidence:** [Insert Screenshot 1 – WHOIS results]
+**Evidence:** [whois-result](Screenshots/whois.png)
 
 ### 5.1.2. WhatWeb
 
@@ -108,13 +111,15 @@ WhatWeb is a web technology fingerprinting tool. It helps identify technologies 
 
 **Observation:**
 
-[Insert the technologies and other relevant information identified by WhatWeb.]
+http://networkwalks.com [301 Moved Permanently] Apache, Cookies[__wpdm_client], Country[UNITED STATES][US], HTTPServer[Apache], HttpOnly[__wpdm_client], IP[192.232.216.135], RedirectLocation[https://networkwalks.com/], UncommonHeaders[permissions-policy,x-redirect-by,upgrade,referrer-policy,x-endurance-cache-level,x-nginx-cache]
+https://networkwalks.com [200 OK] Apache, Bootstrap[7.1.4], Cookies[__wpdm_client], Country[UNITED STATES][US], Email[info@networkwalks.com], Frame, Google-Tag-Manager, HTML5, HTTPServer[Apache], HttpOnly[__wpdm_client], IP[192.232.216.135], JQuery[3.7.1], MetaGenerator[WordPress 7.1.4,WordPress Download Manager 3.3.76], Open-Graph-Protocol[website], Script[4684NR-IPIB&amp;pidnVar2=50511&amp;prtVar2=7&amp;scvVar2=12,application/json,application/ld+json,module,speculationrules,text/javascript], Title[Networkwalks Academy], UncommonHeaders[permissions-policy,link,upgrade,referrer-policy,x-endurance-cache-level,x-nginx-cache], WordPress[7.1.4]
+https://networkwalks.com/ [200 OK] Apache, Bootstrap[7.1.4], Country[UNITED STATES][US], Email[info@networkwalks.com], Frame, Google-Tag-Manager, HTML5, HTTPServer[Apache], IP[192.232.216.135], JQuery[3.7.1], MetaGenerator[WordPress 7.1.4,WordPress Download Manager 3.3.76], Open-Graph-Protocol[website], Script[4684NR-IPIB&amp;pidnVar2=50511&amp;prtVar2=7&amp;scvVar2=12,application/json,application/ld+json,module,speculationrules,text/javascript], Title[Networkwalks Academy], UncommonHeaders[permissions-policy,link,upgrade,referrer-policy,x-endurance-cache-level,x-nginx-cache], WordPress[7.1.4]
 
 **Security relevance:**
 
 Identifying web technologies helps security professionals understand the target's technology stack and determine whether further authorized security reviews are necessary.
 
-**Evidence:** [Insert Screenshot 2 – WhatWeb results]
+**Evidence:** ![Whatweb-result](Screenshots/whatweb.png)
 
 ### 5.1.3. Nslookup
 
@@ -126,13 +131,19 @@ Nslookup is a command-line utility used to query DNS servers and retrieve inform
 
 **Observation:**
 
-[Insert the IP address and other DNS information returned by your command.]
+nslookup networkwalks.com 
+Server:         8.8.8.8
+Address:        8.8.8.8#53
+
+Non-authoritative answer:
+Name:   networkwalks.com
+Address: 192.232.216.135
 
 **Security relevance:**
 
 DNS information helps identify how a domain resolves on the Internet and provides an initial understanding of its network infrastructure.
 
-**Evidence:** [Insert Screenshot 3 – Nslookup results]
+**Evidence:**  ![nslookup-result](Screenshots/nslookup.png)
 
 ### 5.1.4. cURL – HTTP Headers
 
@@ -144,13 +155,24 @@ cURL can be used to retrieve HTTP response headers from a website.
 
 **Observation:**
 
-[Insert the HTTP status code and relevant response headers returned by your command.]
+curl -I https://networkwalks.com
+HTTP/2 200 
+permissions-policy: private-state-token-redemption=(self "https://www.google.com" "https://www.gstatic.com" "https://recaptcha.net" "https://challenges.cloudflare.com" "https://hcaptcha.com//www.google.com" "https://www.gstatic.com" "https://recaptcha.net" "https://challenges.cloudflare.com" "https://hcaptcha.com")
+link: <https://networkwalks.com/wp-json/>; rel="https://api.w.org/", <https://networkwalks.com/wp-json/wp/v2/pages/53>; rel="alternate"; title="JSON"; type="application/json", <https://netw
+set-cookie: __wpdm_client=89aef3d13cb4dcb6b1f3df451041fab7; path=/; domain=networkwalks.com; secure; HttpOnly
+referrer-policy: no-referrer-when-downgrade
+x-endurance-cache-level: 0
+x-nginx-cache: WordPress
+content-type: text/html; charset=UTF-8
+date: Tue, 10 Nov 2026 23:19:37 GMT
+server: Apache
 
 **Security relevance:**
 
 HTTP headers can reveal information about the web server and application configuration. Reviewing them can help identify unnecessary technical information exposed to external users.
 
-**Evidence:** [Insert Screenshot 4 – cURL results]
+**Evidence:** 
+![curl-I-result](Screenshots/curl-I.png)
 
 ### 5.1.5. Wafw00f
 
@@ -162,13 +184,16 @@ Wafw00f is a tool designed to identify whether a website is protected by a Web A
 
 **Observation:**
 
-[Insert the actual result: WAF detected, no WAF detected, or inconclusive.]
+[*] Checking https://networkwalks.com
+[+] The site https://networkwalks.com is behind ModSecurity (SpiderLabs) WAF.
+[~] Number of requests: 2
 
 **Security relevance:**
 
 Knowing whether a WAF is present provides information about the website's defensive architecture. However, identifying a WAF does not establish whether it is correctly configured or effective against every attack.
 
-**Evidence:** [Insert Screenshot 5 – Wafw00f results]
+**Evidence:** 
+![wafw00f-result](Screenshots/wafw00f.png)
 
 ### 5.1.6. DNSRecon
 
@@ -180,13 +205,19 @@ DNSRecon is a DNS enumeration tool used to retrieve and analyze DNS records.
 
 **Observation:**
 
-[Insert the DNS records or other relevant findings obtained.]
-
+dnsrecon -d networkwalks.com
+2026-11-10T18:25:15.418724-0500 INFO Starting enumeration for domain: networkwalks.com
+2026-11-10T18:25:15.419314-0500 INFO std: Performing General Enumeration against: networkwalks.com...
+2026-11-10T18:25:16.477003-0500 ERROR No answer for DNSSEC query for networkwalks.com
+2026-11-10T18:25:17.604460-0500 INFO     SOA ns6135.hostgator.com 50.87.144.87
+2026-11-10T18:25:18.424623-0500 INFO     NS ns6136.hostgator.com 192.232.216.131
+...
 **Security relevance:**
 
 DNS records can reveal information about name servers, mail infrastructure and other services associated with a domain. This information can help build a broader understanding of the target's digital infrastructure.
 
-**Evidence:** [Insert Screenshot 6 – DNSRecon results]
+**Evidence:** 
+![dnsrecon-d-result](<Screenshots/dnsrecon -d.png>)
 
 ---
 
@@ -230,7 +261,8 @@ At the same time, publicly available email addresses may be collected by malicio
 
 Organizations should therefore monitor their publicly exposed information and ensure that employees are aware of email-based threats.
 
-**Evidence:** [Insert Screenshot 7 – Maltego graph showing info@networkwalks.com]
+**Evidence:** 
+![maltego](Screenshots/Maltego.jpeg)
 
 ---
 
@@ -264,7 +296,8 @@ The search did not return any IP addresses, email addresses, people or hosts.
 
 This result does not mean that no information exists about the domain. It only indicates that the selected source did not return relevant results during this particular search.
 
-**Evidence:** [Insert Screenshot 8 – Initial theHarvester search]
+**Evidence:** 
+![harvester-result1](Screenshots/theharvester1.png)
 
 ### 5.3.3. Search Using Multiple Data Sources
 
@@ -334,10 +367,8 @@ For this reason, the information collected must be handled responsibly and shoul
 
 **Evidence:**
 
-- [Insert Screenshot 9 – theHarvester command using Baidu]
-- [Insert Screenshot 10 – theHarvester command using all sources]
-- [Insert Screenshot 11 – theHarvester email addresses]
-- [Insert Screenshot 12 – theHarvester summary statistics]
+![harvester-result1](Screenshots/theharvester1.png)
+![harvester-result2](Screenshots/theharvester2.png)
 
 ---
 
@@ -494,21 +525,17 @@ The following screenshots provide evidence of the practical activities performed
 
 | Evidence | Description |
 |---|---|
-| Screenshot 1 | WHOIS results |
-| Screenshot 2 | WhatWeb results |
-| Screenshot 3 | Nslookup results |
-| Screenshot 4 | cURL HTTP headers |
-| Screenshot 5 | Wafw00f results |
-| Screenshot 6 | DNSRecon results |
-| Screenshot 7 | Maltego graph showing the discovered email address |
-| Screenshot 8 | Initial theHarvester search using Baidu |
-| Screenshot 9 | theHarvester search using multiple sources |
-| Screenshot 10 | theHarvester email results |
-| Screenshot 11 | theHarvester summary statistics |
+| Screenshots/whois.png| WHOIS results |
+| Screenshots/whatweb.png| WhatWeb results |
+| Screenshots/nslookup.png | Nslookup results |
+| Screenshots/curl-I.png | cURL HTTP headers |
+| Screenshots/wafw00f.png | Wafw00f results |
+| Screenshots/dnsrecon -d.png | DNSRecon results |
+| Screenshots/Maltego.jpeg| Maltego graph showing the discovered email address |
+| Screenshots/theharvester1.png | Initial theHarvester search using Baidu |
+| Screenshots/theharvester2.png | theHarvester search using multiple sources |
 | Screenshot 12 | Zenmap scan configuration and results |
 | Screenshot 13 | Zenmap network topology, if available |
-
-*Note: Adjust the screenshot numbering and descriptions to match the evidence actually included in the final report.*
 
 ---
 
