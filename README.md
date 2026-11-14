@@ -394,10 +394,9 @@ The objective was to identify the devices visible within the controlled environm
 
 **Network information:**
 
-- Network range: [Insert your actual network range]
+- Network range: 10.0.0.0/24
 - Scanning tool: Zenmap
-- Scan type: [Insert the scan profile used]
-- Number of hosts discovered: [Insert your actual result]
+- Number of hosts discovered: 3
 
 ### 5.4.3. Results and Observations
 
@@ -405,18 +404,13 @@ The network discovery exercise identified two virtual machines within the labora
 
 The machines were part of the controlled virtual network used for the practical exercise.
 
-| Device | IP address | Role |
-|---|---|---|
-| Virtual Machine 1 | [Insert IP address] | [Insert operating system / role] |
-| Virtual Machine 2 | [Insert IP address] | [Insert operating system / role] |
-
 The results demonstrate how network discovery can help identify devices connected to a virtual network.
 
 **Evidence:**
 
-- [Insert Screenshot 13 – Zenmap scan configuration]
-- [Insert Screenshot 14 – Zenmap scan results]
-- [Insert Screenshot 15 – Zenmap topology, if generated]
+![zenmap-scan](Screenshots/zenmapscan.png)
+
+![zenmap-topology](Screenshots/zenmap-topology.png)
 
 # 6. RISK ANALYSIS AND POTENTIAL IMPACT
 
@@ -534,8 +528,8 @@ The following screenshots provide evidence of the practical activities performed
 | Screenshots/Maltego.jpeg| Maltego graph showing the discovered email address |
 | Screenshots/theharvester1.png | Initial theHarvester search using Baidu |
 | Screenshots/theharvester2.png | theHarvester search using multiple sources |
-| Screenshot 12 | Zenmap scan configuration and results |
-| Screenshot 13 | Zenmap network topology, if available |
+| Screenshots/zenmapscan.png | Zenmap scan configuration and results |
+| Screenshots/zenmap-topology.png | Zenmap network topology|
 
 ---
 
